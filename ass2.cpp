@@ -2,7 +2,6 @@
 #include <omp.h>
 using namespace std;
 
-// Merge function
 void merge(int a[], int i1, int j1, int i2, int j2) {
     int temp[1000]; 
     int i = i1, j = i2, k = 0;
@@ -16,7 +15,6 @@ void merge(int a[], int i1, int j1, int i2, int j2) {
     }
 }
 
-// Mergesort function
 void mergesort(int a[], int i, int j) {
     if (i < j) {
         int mid = (i + j) / 2;
@@ -35,7 +33,6 @@ void mergesort(int a[], int i, int j) {
     }
 }
 
-// Bubble Sort function
 void bubbleSort(int arr[], int n) {
     bool swapped;
     for (int i = 0; i < n - 1; i++) {
@@ -51,7 +48,6 @@ void bubbleSort(int arr[], int n) {
     }
 }
 
-// Function to print the array
 void printArray(int arr[], int n) {
     cout << "[ ";
     for (int i = 0; i < n; i++) {
@@ -65,7 +61,6 @@ int main() {
     cout << "Enter number of elements: ";
     cin >> n;
 
-    // Use dynamic allocation
     int* arr = new int[n];
     cout << "Enter " << n << " elements: ";
     for (int i = 0; i < n; i++) {
@@ -81,7 +76,6 @@ int main() {
 
         if (choice == 3) break;
         else if (choice == 1) {
-            // Sequential Merge Sort
             start_time = omp_get_wtime();
             mergesort(arr, 0, n - 1);
             end_time = omp_get_wtime();
@@ -89,9 +83,7 @@ int main() {
             cout << "\nSequential Merge Sort Time: " << seq_time * 1e6 << " microseconds" << endl;
 
             cout << "Array after Merge Sort: ";
-            printArray(arr, n); // Print array after Merge Sort
-
-            // Parallel Merge Sort
+            printArray(arr, n); 
             start_time = omp_get_wtime();
             #pragma omp parallel
             { 
@@ -103,10 +95,10 @@ int main() {
             cout << "Parallel Merge Sort Time: " << par_time * 1e6 << " microseconds" << endl;
 
             cout << "Array after Parallel Merge Sort: ";
-            printArray(arr, n); // Print array after Parallel Merge Sort
+            printArray(arr, n); 
         }
         else if (choice == 2) {
-            // Sequential Bubble Sort
+           
             start_time = omp_get_wtime();
             bubbleSort(arr, n);
             end_time = omp_get_wtime();
@@ -114,9 +106,9 @@ int main() {
             cout << "\nSequential Bubble Sort Time: " << seq_time * 1e6 << " microseconds" << endl;
 
             cout << "Array after Bubble Sort: ";
-            printArray(arr, n); // Print array after Bubble Sort
+            printArray(arr, n); 
 
-            // Parallel Bubble Sort
+
             start_time = omp_get_wtime();
             #pragma omp parallel
             {
@@ -128,13 +120,13 @@ int main() {
             cout << "Parallel Bubble Sort Time: " << par_time * 1e6 << " microseconds" << endl;
 
             cout << "Array after Parallel Bubble Sort: ";
-            printArray(arr, n); // Print array after Parallel Bubble Sort
+            printArray(arr, n); 
         }
         else {
             cout << "Valid Option required!\n";
         }
     }
 
-    delete[] arr; // Free memory
+    delete[] arr;
     return 0;
 }
