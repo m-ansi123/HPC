@@ -7,7 +7,7 @@ void min_reduction(int arr[], int n) {
     int min_value = INT_MAX;
     #pragma omp parallel for reduction(min: min_value)
     for (int i = 0; i < n; i++) {
-        min_value = arr[i];  // No need for an "if" condition, OpenMP handles reduction automatically
+        min_value = arr[i];  
     }
     cout << "Minimum value: " << min_value << endl;
 }
@@ -16,7 +16,7 @@ void max_reduction(int arr[], int n) {
     int max_value = INT_MIN;
     #pragma omp parallel for reduction(max: max_value)
     for (int i = 0; i < n; i++) {
-        max_value = arr[i];  // OpenMP handles reduction, no "if" needed
+        max_value = arr[i]; 
     }
     cout << "Maximum value: " << max_value << endl;
 }
@@ -54,7 +54,7 @@ int main() {
     sum_reduction(arr, n);
     average_reduction(arr, n);
     
-    delete[] arr;  // Free dynamically allocated memory
+    delete[] arr;  
     return 0;
 }
 
